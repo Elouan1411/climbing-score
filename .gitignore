@@ -1,0 +1,33 @@
+# === GLOBAL ===
+.env
+.DS_Store
+node_modules/
+*.log
+
+# === BACKEND ===
+backend/node_modules/
+backend/.env
+backend/.DS_Store
+
+# === FRONTEND (Expo / React Native) ===
+climbing-score-app/node_modules/
+climbing-score-app/.expo/
+climbing-score-app/.expo-shared/
+climbing-score-app/.env
+climbing-score-app/android/
+climbing-score-app/ios/
+climbing-score-app/web-build/
+climbing-score-app/.DS_Store
+climbing-score-app/dist/
+climbing-score-app/build/
+
+# VSCode settings (si tu utilises VSCode)
+.vscode/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+Thumbs.db
