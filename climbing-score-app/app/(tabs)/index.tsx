@@ -21,6 +21,7 @@ export default function App() {
   const [sortAsc, setSortAsc] = useState(true);
   const [searchText, setSearchText] = useState("");
   const [refreshing, setRefreshing] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const colorScheme = useColorScheme() ?? "light";
 
@@ -35,10 +36,13 @@ export default function App() {
 
   const loadCompetitions = async () => {
     try {
+      setLoading(true);
       const data = await fetchCompetitions();
       setCompetitions(data);
     } catch (error) {
-      console.error("Erreur chargement compétitions", error);
+      console.error("Erreur de chargement", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -102,7 +106,11 @@ export default function App() {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
-        {sortedCompetitions.length === 0 ? (
+        {loading ? (
+          <Text style={[styles.emptyText, { color: placeholderColor }]}>
+            Chargement...
+          </Text>
+        ) : sortedCompetitions.length === 0 ? (
           <Text style={[styles.emptyText, { color: placeholderColor }]}>
             Aucune compétition
           </Text>
